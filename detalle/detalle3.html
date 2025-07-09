@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Para mi princesa 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        html,
+        body {
+            height: auto;
+            min-height: 100vh;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            color: white;
+            text-align: center;
+        }
+
+        .gradient-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(270deg, #a528a5, #c744b8, #f0f41e, #1c4cec);
+            background-size: 800% 800%;
+            animation: gradient 20s ease infinite;
+            z-index: -1;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+
+        .fade-in-title {
+            font-size: 3em;
+            text-shadow: 0 0 20px #fff, 0 0 30px pink;
+            animation: fadeIn 3s ease-in-out;
+            font-family: 'Great Vibes', cursive;
+        }
+
+        .magic-button {
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 20px;
+            background: radial-gradient(circle, hsl(300, 89%, 52%), #0d07ae);
+            color: white;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .magic-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.9);
+        }
+
+        #carta {
+            display: none;
+            margin: 40px auto;
+            width: 80%;
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(14, 14, 225, 0.1);
+            border: 2px solid white;
+            border-radius: 20px;
+            box-shadow: 0 0 25px rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        .mensaje {
+            font-size: 1.2em;
+            color: hsl(285, 29%, 97%);
+            animation: fadeInUp 2s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('https://cdn-icons-png.flaticon.com/512/833/833472.png') no-repeat center;
+            background-size: contain;
+            animation: float 6s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        audio {
+            display: none;
+            /* Ocultar el reproductor de audio */
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="gradient-bg"></div>
+
+    <div class="container">
+        <h1 class="fade-in-title">Para ti, mi amor eterno 💖</h1>
+        <button class="magic-button" onclick="mostrarCarta()">Abrir carta mágica ✨</button>
+
+        <div id="carta">
+            <p class="mensaje">
+                Cada día a tu lado es un regalo. 💌<br>
+                Tu sonrisa ilumina mis días, tu mirada me da paz, y tu amor... es mi hogar. <br>
+                Te amo con todo mi ser y más allá. ❤️<br><br>
+                Siempre tuyo, con el corazón más enamorado que nunca. 💘
+            </p>
+            <button class="magic-button" onclick="mostrarFrase()">Dime otra razón por la que te amo</button>
+            <p id="fraseExtra" class="mensaje" style="margin-top: 20px;"></p>
+            
+        </div>
+        
+    </div>
+
+    <!-- Audio romántico -->
+    <audio autoplay loop>
+        <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const frases = [
+            "Tu sonrisa es mi luz en los días grises ☀️",
+            "Eres mi refugio y mi aventura a la vez 🌈",
+            "Contigo aprendí que el amor verdadero sí existe 💕",
+            "Cada momento contigo es un tesoro ✨",
+            "Eres el sueño que no quiero despertar 🌙"
+        ];
+
+        function mostrarCarta() {
+            document.getElementById('carta').style.display = 'block';
+        }
+
+        function mostrarFrase() {
+            const frase = frases[Math.floor(Math.random() * frases.length)];
+            document.getElementById("fraseExtra").innerText = frase;
+        }
+
+        function crearCorazones() {
+            setInterval(() => {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "vw";
+                heart.style.top = Math.random() * 100 + "vh";
+                heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 6000);
+            }, 400);
+        }
+
+        
+    </script>
+
+</body>
+
+</html>
